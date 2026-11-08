@@ -1,0 +1,53 @@
+{
+  "tag": "plantdoc",
+  "n": 262,
+  "loss": 5.14618,
+  "accuracy": 0.473282,
+  "macro_f1": 0.342868,
+  "per_class": [
+    {
+      "class": "healthy",
+      "support": 63,
+      "precision": 0.333333,
+      "recall": 0.031746,
+      "f1": 0.057971
+    },
+    {
+      "class": "early_blight",
+      "support": 88,
+      "precision": 0.438596,
+      "recall": 0.284091,
+      "f1": 0.344828
+    },
+    {
+      "class": "late_blight",
+      "support": 111,
+      "precision": 0.487437,
+      "recall": 0.873874,
+      "f1": 0.625806
+    }
+  ],
+  "confusion_matrix": [
+    [
+      2,
+      19,
+      42
+    ],
+    [
+      3,
+      25,
+      60
+    ],
+    [
+      1,
+      13,
+      97
+    ]
+  ],
+  "class_order": [
+    "healthy",
+    "early_blight",
+    "late_blight"
+  ],
+  "note": "所有数字来自本机实际运行，请勿手改。"
+}

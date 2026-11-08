@@ -1,0 +1,7 @@
+# dataset=plantdoc seed=0 per_class=2 layout=3x2
+healthy	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaf-26180166.jpg
+healthy	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\Leaves-of-Tomato.jpg
+early_blight	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Diseased-Tomato-Plant.jpg
+early_blight	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early_blight_tomato.jpg
+late_blight	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\18c.jpg
+late_blight	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Tomato-Late-BlightBM.jpg

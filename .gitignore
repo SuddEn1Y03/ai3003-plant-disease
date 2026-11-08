@@ -1,0 +1,45 @@
+﻿# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# ---- 数据（体积大，且版权归原作者，不放进仓库）----
+data/
+dataset/
+datasets/
+PlantVillage-Dataset/
+PlantDoc-Dataset/
+*.zip
+*.tar.gz
+
+# ---- 训练产物 ----
+runs/**/best.pt
+runs/**/last.pt
+*.pt
+*.pth
+*.onnx
+*.ckpt
+# 保留每个 run 的 log.csv / metrics_*.json / args.json（复现证据），只忽略权重
+!runs/**/log.csv
+!runs/**/metrics_*.json
+!runs/**/args.json
+
+# ---- 编辑器和系统 ----
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- 本地临时文件 ----
+*.log
+!runs/**/train.log
+tmp/
+.tmp/
+figures_test*/
+*.png.tmp

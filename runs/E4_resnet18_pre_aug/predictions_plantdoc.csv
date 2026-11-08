@@ -1,0 +1,263 @@
+﻿path,true,pred,correct,p_healthy,p_early,p_late
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf\1684.jpg,healthy,late_blight,0,0.042938,0.002607,0.954455
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf\2013-08-20-06.jpg,healthy,early_blight,0,1e-06,0.999668,0.000331
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf\90e2c0.jpg,healthy,early_blight,0,9e-06,0.999659,0.000332
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf\DSCN1015.JPG.jpg,healthy,early_blight,0,0.014933,0.985052,1.5e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf\IMG_1246.jpg,healthy,late_blight,0,7.1e-05,2e-06,0.999927
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf\main-qimg-d9c2a93f60568485c989670d9bbf703b.jpg,healthy,late_blight,0,0.017889,0.0084,0.973712
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf\Tomato59.JPG.jpg,healthy,early_blight,0,1e-05,0.999958,3.2e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf\Tomato_leaf.jpg,healthy,late_blight,0,0.000681,0.000534,0.998785
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\003.JPG.jpg,healthy,late_blight,0,0.000251,0.014471,0.985278
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\009-e1373768789869.jpg,healthy,early_blight,0,0.124732,0.844935,0.030333
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\100_8283.jpg,healthy,early_blight,0,0.001614,0.989313,0.009073
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\15481477375.jpg,healthy,early_blight,0,4.5e-05,0.995707,0.004248
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\1686.jpg,healthy,early_blight,0,2.2e-05,0.999927,5.1e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\1688.jpg,healthy,early_blight,0,0.0,0.999997,3e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\17371378-tomato-leaf.jpg,healthy,late_blight,0,0.21859,0.015459,0.765951
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\2013-08-20-03.jpg,healthy,early_blight,0,0.00025,0.999673,7.7e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\2013-08-20-04.jpg,healthy,early_blight,0,0.003666,0.98742,0.008914
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\20130609_151253_zpsc7d93f62.jpg,healthy,early_blight,0,1.8e-05,0.548459,0.451523
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\20140818-tomato-sauce-vicky-wasik-1.jpg,healthy,late_blight,0,0.000162,0.389526,0.610311
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\2015-09-17-01.jpg,healthy,late_blight,0,7.5e-05,1.5e-05,0.99991
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\20160428_080421.jpg,healthy,early_blight,0,0.000291,0.999542,0.000167
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\9bfac1dea7f401e3b379dab33f535bb4.jpg,healthy,early_blight,0,0.176196,0.433379,0.390425
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\Bacterial-leaf-spot-transplants1.jpg,healthy,early_blight,0,0.0,0.999998,2e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\Basil%2Binfected%2Bby%2BTomato%2BSpotted%2BWilt%2BVirus.jpg,healthy,late_blight,0,0.000808,0.000307,0.998886
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\CTG514794.jpg,healthy,early_blight,0,2e-06,0.999998,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\curling-issues.jpg,healthy,late_blight,0,4e-06,0.001186,0.99881
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\depositphotos_120361722-stock-photo-tomato-leaf-closeup.jpg,healthy,late_blight,0,0.22437,0.013771,0.761859
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\depositphotos_143371585-stock-photo-tomato-leaf-closeup-isolated-on.jpg,healthy,late_blight,0,0.01891,0.002347,0.978743
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\depositphotos_7182856-stock-photo-tomato-leaf.jpg,healthy,late_blight,0,0.060717,0.01211,0.927173
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\DSCN1016.JPG.jpg,healthy,late_blight,0,0.009375,0.13154,0.859085
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\Fig-2.jpg,healthy,late_blight,0,0.004742,0.002677,0.992581
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\flies.jpg,healthy,late_blight,0,1e-06,0.0,0.999998
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\fpls-08-01602-g001.jpg,healthy,late_blight,0,0.086615,0.014146,0.899239
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\happier-inside.jpg,healthy,early_blight,0,0.000235,0.998651,0.001114
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\img_1028.jpg,healthy,late_blight,0,2.5e-05,2.4e-05,0.999951
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\IMG_2061.JPG.jpg,healthy,late_blight,0,0.005035,0.078352,0.916613
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\IMG_3011.jpg,healthy,early_blight,0,2e-06,0.999883,0.000116
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\IMG_3192.JPG.jpg,healthy,early_blight,0,6e-05,0.999923,1.7e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\img_6635.jpg,healthy,early_blight,0,7e-06,0.999991,2e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\L.peruv-assort.jpg,healthy,late_blight,0,0.143166,0.418633,0.438201
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\late_blight_tomato_leaf4x1200.jpg,healthy,early_blight,0,0.002409,0.912777,0.084814
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\Leaves-of-Tomato.jpg,healthy,late_blight,0,0.000437,0.097168,0.902395
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\mortgage-lifter-yellow-leaves-2.jpg,healthy,early_blight,0,0.040158,0.959679,0.000163
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\p1011399.jpg,healthy,early_blight,0,0.000269,0.999523,0.000208
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\PxWBE.jpg,healthy,late_blight,0,0.000322,1.9e-05,0.999659
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\russian-2-319-dt-2010-leaves-high-tunnel-9-29-2014-c.jpg,healthy,early_blight,0,0.0,0.999999,1e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\single-a-green-leaf-of-tomato-picture-id496662675_k=6&m=496662675&s=612x612&w=0&h=6zKfv022H_9cLQSIR_kpcOAlTeg1eIVtLBbc80PQA7Y=.jpg,healthy,late_blight,0,0.013947,0.005562,0.980491
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\stock-photo-leaves-of-tomato-plant-isolated-on-white-12085288.jpg,healthy,late_blight,0,0.152726,0.012462,0.834811
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\stock-photo-tomato-leaf-isolated-on-white-background-580281301.jpg,healthy,late_blight,0,0.00163,0.001244,0.997126
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\stock-photo-tomato-leaves-close-up-macro-shot-isolated-on-white-background-78796204.jpg,healthy,late_blight,0,0.3392,0.023881,0.636918
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\stock-vector-set-of-vector-elements-for-your-design-red-ripe-tomatoes-with-water-drops-tomato-leaves-and-tomato-203297116.jpg,healthy,healthy,1,0.852438,0.008129,0.139433
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\Tomato%2Bleaf.jpg,healthy,late_blight,0,0.000873,0.029735,0.969391
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaf-20728368.jpg,healthy,late_blight,0,0.145479,0.02669,0.827831
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaf-26180166.jpg,healthy,late_blight,0,0.178893,0.019453,0.801654
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaf-6291945.jpg,healthy,late_blight,0,0.195613,0.240764,0.563622
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaf-6424287.jpg,healthy,late_blight,0,0.000167,0.001366,0.998466
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaf-close-up.jpg,healthy,late_blight,0,0.011479,0.006698,0.981823
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaf-isolated-white-34309524.jpg,healthy,late_blight,0,0.137609,0.00875,0.853641
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaf.jpg,healthy,late_blight,0,0.002342,0.003039,0.994618
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaves-17427786.jpg,healthy,late_blight,0,0.191744,0.026966,0.78129
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaves-9025906.jpg,healthy,late_blight,0,0.08276,0.017106,0.900134
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-leaves.jpg,healthy,late_blight,0,0.107888,0.009367,0.882745
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf\tomato-vine-ripe-leaves-isolated-against-white-34863029.jpg,healthy,late_blight,0,0.161754,0.022662,0.815584
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\039b47d574bc4bb8a14259a1cd96a741.jpg,early_blight,early_blight,1,1e-06,0.998444,0.001555
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\100983448.jpg,early_blight,early_blight,1,0.0,0.997207,0.002793
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\1234080-Early-Blight.jpg,early_blight,early_blight,1,2e-06,0.943648,0.05635
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\bugs-and-blight-061.jpg,early_blight,early_blight,1,3e-06,0.999997,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\dscn3175.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\early_blight1-150x150.jpg,early_blight,early_blight,1,0.0,0.999462,0.000537
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\earlyblight21_.jpg,early_blight,late_blight,0,7e-06,0.001817,0.998176
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\Shoemaker_7068.JPG.jpg,early_blight,early_blight,1,2.2e-05,0.876037,0.123941
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato Early blight leaf\tomato_early-blight_01_zoom.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\100_46341.jpg,early_blight,early_blight,1,5.6e-05,0.999775,0.000169
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\1058_0.jpeg_itok=OQkdtxgv.jpg,early_blight,early_blight,1,2.9e-05,0.999477,0.000494
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\126689-004-D622CD2F.jpg,early_blight,late_blight,0,1e-06,0.031956,0.968044
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\12July_mwnews_3-C.jpg,early_blight,early_blight,1,0.0,0.999991,9e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\1576389-early%20blight%20symptoms.jpg,early_blight,late_blight,0,0.0,0.484217,0.515783
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\20020531-early%20blight%20%20starts%20on%20lower%20leaves.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\20080526-_DSC4211.jpg,early_blight,early_blight,1,0.000109,0.999891,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\2373320.jpg,early_blight,early_blight,1,1.7e-05,0.999955,2.8e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\30053_original.jpg,early_blight,early_blight,1,7e-06,0.999058,0.000936
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\3606630.jpg,early_blight,late_blight,0,0.0,1.7e-05,0.999983
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\5086-early.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\8%20mistakes%204.jpg,early_blight,late_blight,0,3.5e-05,0.002128,0.997836
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\8950022d45978228d5e44a35183efdb9--tomatoes-dyi.jpg,early_blight,early_blight,1,0.000176,0.89777,0.102054
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\august-11-early-leaf-blight-single-leaf.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\b54d0e40027ff5e90e8ba7e1e9abf9bd--garden-guide-garden-ideas.jpg,early_blight,late_blight,0,3e-06,0.056684,0.943313
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\BCH%20medium%20thumbnail%20for%20upload%20%2836%29.jpg,early_blight,early_blight,1,2e-06,0.999925,7.2e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\blog_early_blight_628.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\confused-bacterial-canker-early-blight-zoom.JPG.jpg,early_blight,early_blight,1,2.4e-05,0.876882,0.123094
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Diseased-Tomato-Plant.jpg,early_blight,late_blight,0,3e-06,0.000446,0.999551
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\droppedImage_3-1.jpg,early_blight,early_blight,1,3.4e-05,0.999321,0.000644
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\dscn3168.jpg,early_blight,early_blight,1,0.0,0.999997,3e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\ealryblight.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early%20blight%20%283%29.jpg_itok=UMYWI0xr.jpg,early_blight,late_blight,0,8.4e-05,0.230722,0.769194
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early%20blight%20%284%29.jpg_itok=gfK5C193.jpg,early_blight,late_blight,0,1e-06,0.000659,0.99934
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Early+Blight+-+Tomatoes.jpg,early_blight,early_blight,1,1e-06,0.99994,5.9e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Early-bligh_t.jpg,early_blight,early_blight,1,2.5e-05,0.926339,0.073636
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight-2x.jpg,early_blight,late_blight,0,0.000912,0.295136,0.703952
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Early-blight-660x440.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight-closeup-sm.jpg,early_blight,early_blight,1,1e-06,0.999983,1.6e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight-in-high-tunnel-tomatoes-19tm74h.jpg,early_blight,late_blight,0,0.00129,0.044062,0.954648
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight-in-tomatoes.jpg,early_blight,early_blight,1,1.5e-05,0.999739,0.000245
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight-of-tomato-tomato-1.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight-or-target-spot-alternaria-solani-lesions-on-a-tomato-BH3TH0.jpg,early_blight,late_blight,0,2.1e-05,0.172934,0.827045
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight-or-target-spot-alternaria-solani-lesions-on-a-tomato-BY9J8R.jpg,early_blight,early_blight,1,2.8e-05,0.893408,0.106564
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight-pp-labeled_orig.jpg,early_blight,late_blight,0,0.0,0.000555,0.999445
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Early-blight.jpg,early_blight,early_blight,1,4e-06,0.955826,0.04417
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-blight1.jpg,early_blight,early_blight,1,0.0,0.992622,0.007378
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early-tomato-blight.jpg,early_blight,early_blight,1,2e-06,0.997927,0.002071
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Early_blight_1.jpg_1376579808.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Early_Blight_of_Tomato1687.jpg,early_blight,early_blight,1,1e-06,0.998141,0.001858
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early_blight_spots_l.jpg,early_blight,early_blight,1,1e-06,0.999997,1e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\early_blight_tomato.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\earlyblight.jpg,early_blight,early_blight,1,6e-06,0.960707,0.039287
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\earlyblightpotato.jpg,early_blight,late_blight,0,0.000315,0.00684,0.992845
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\earlyblightresize.jpg,early_blight,early_blight,1,1e-06,0.99853,0.001469
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\earlyblighttomato.jpg,early_blight,early_blight,1,3.4e-05,0.800125,0.19984
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\ebleafb.jpg,early_blight,late_blight,0,0.003386,0.048228,0.948387
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\eblight5.jpg,early_blight,early_blight,1,6e-06,0.998422,0.001572
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\EBTomato.jpg,early_blight,early_blight,1,1e-06,0.999999,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\FS547-2-big.jpg,early_blight,late_blight,0,1.3e-05,0.001522,0.998466
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\gn201410308259997ar-jpg.jpg,early_blight,early_blight,1,3e-06,0.999984,1.3e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\halleck_tomato_earlyblight__inline-half.jpg,early_blight,early_blight,1,0.0,0.971286,0.028714
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\IMG_0591.jpg,early_blight,early_blight,1,0.0,0.999852,0.000148
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\IMG_2436w.jpg,early_blight,early_blight,1,0.0,0.990545,0.009455
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\MPC105550.jpg.rendition.largest.ss.jpg,early_blight,early_blight,1,0.000349,0.999525,0.000126
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Original_e-blight.JPG.rend.hgtvcom.966.725.jpeg.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\p1020083cs.jpg,early_blight,late_blight,0,0.000277,0.308231,0.691492
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\p1020084s.jpg,early_blight,early_blight,1,6e-06,0.987968,0.012026
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\spotonleaf1.jpg,early_blight,late_blight,0,0.0,0.032412,0.967587
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato%20early%20blight%20target%20like%20leaf%20spot.jpg,early_blight,early_blight,1,4e-05,0.994626,0.005334
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato-Alternaria-Early-Blight.jpg,early_blight,late_blight,0,0.0,0.012686,0.987314
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato-blight-large.jpg,early_blight,early_blight,1,1e-06,0.999998,1e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomato-blight-phytophthora-infestans-early-stages-on-tomato-plant-b5n952.jpg,early_blight,early_blight,1,9e-06,0.999991,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomato-blight-soil-treatment-early-tomato-blight-in-a-microcosm-lower-leaves-curl-up-and-die-bulls-eye-lesions-tomato-fungus-soil-treatment.jpg,early_blight,late_blight,0,1e-06,0.001544,0.998455
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato-diseases-prevention-treatment.-Early-blight..jpg,early_blight,late_blight,0,8.3e-05,0.075818,0.924099
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomato-early-blight-1.jpg,early_blight,early_blight,1,0.00012,0.71867,0.28121
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato-Early-Blight-e1513806873934.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato-Early-Blight-Leaf-Examples-Cornell-University.jpg,early_blight,early_blight,1,0.008102,0.990565,0.001334
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato-Early-Blight-Leaves-Cornell-University.jpg,early_blight,early_blight,1,2e-06,0.999996,2e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato-Early-Blight.jpg,early_blight,early_blight,1,5.1e-05,0.988162,0.011787
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\Tomato-early-blight_1_1-12wmver.jpg,early_blight,early_blight,1,1e-06,0.999988,1.1e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomato_blight_early.jpg,early_blight,early_blight,1,1.4e-05,0.993769,0.006217
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomato_D2b-Early-blight---RPitblado_zoom.jpg,early_blight,early_blight,1,4e-06,0.999931,6.5e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomato_early-blight_02_zoom.jpg,early_blight,late_blight,0,0.0,0.005844,0.994156
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomato_early-blight_03_zoom.jpg,early_blight,early_blight,1,0.00013,0.995013,0.004858
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomato_q1hq-early-blight-5052_zoom.jpg,early_blight,early_blight,1,1e-06,0.585923,0.414076
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomatoblight.jpg,early_blight,early_blight,1,6e-06,0.999994,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\tomatoearlyblight.jpg,early_blight,early_blight,1,0.0,1.0,0.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato Early blight leaf\web1_copy_early-blight-6-_0.jpg,early_blight,early_blight,1,0.000112,0.888381,0.111507
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\110822-206-Tomato-blight.jpg,late_blight,late_blight,1,0.0,3.4e-05,0.999966
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\18c.jpg,late_blight,late_blight,1,0.00179,0.041678,0.956532
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\636368370164094909-late-blight-15-.jpg,late_blight,late_blight,1,3.4e-05,0.014731,0.985235
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\70.jpg,late_blight,early_blight,0,0.0,0.915948,0.084052
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\dsc_8148cs.jpg,late_blight,late_blight,1,0.0,0.014654,0.985346
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\E%29Tomato-late-blight-foliar.jpg,late_blight,late_blight,1,2e-06,1e-05,0.999987
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\image.jpg,late_blight,late_blight,1,0.007241,0.034301,0.958457
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\IMG_5808.jpg,late_blight,late_blight,1,0.000326,0.474407,0.525267
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\late_blight_tomato_leaf_spore1x1200.jpg,late_blight,late_blight,1,7.7e-05,0.01299,0.986933
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\test\Tomato leaf late blight\LateBlt09_06.jpg,late_blight,early_blight,0,0.0,0.999999,1e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\118A_Tom_Late.jpg,late_blight,late_blight,1,7e-06,0.002139,0.997853
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\20150619d.jpg,late_blight,late_blight,1,0.0,4.9e-05,0.999951
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\2017-08-27%2B-%2BLate%2BBlight%2Bon%2BGypsy%2B1.jpg,late_blight,early_blight,0,1.2e-05,0.999671,0.000318
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\5816170621_e1cce08736_z.jpg,late_blight,late_blight,1,2.7e-05,0.000167,0.999806
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\600.jpg,late_blight,late_blight,1,1e-06,0.000139,0.99986
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\7262-drought.jpg,late_blight,late_blight,1,0.0,0.004003,0.995997
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\924977LateBlightLeaf.jpg,late_blight,late_blight,1,0.000301,0.028777,0.970922
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\a7710b5901ba1f8e9759ef7576cd9f09.jpg,late_blight,early_blight,0,1.3e-05,0.999979,7e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\August-17-2012-Supplemental-6.jpg,late_blight,late_blight,1,6e-06,0.034722,0.965272
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\dsc_4621c.jpg,late_blight,late_blight,1,0.002251,0.005492,0.992256
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\dsc_4624s.jpg,late_blight,late_blight,1,0.0,0.043516,0.956484
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\dsc_8140cs.jpg,late_blight,late_blight,1,0.000164,0.413418,0.586418
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\F%294.jpg,late_blight,late_blight,1,0.000617,0.219954,0.779429
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Fig.%2014_opta.jpg,late_blight,late_blight,1,0.0,4e-06,0.999996
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\FS547-6-big.jpg,late_blight,late_blight,1,2.3e-05,0.045047,0.95493
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\gardening-moisture-lateblight-tomato-leaf.jpg,late_blight,late_blight,1,1.5e-05,0.004034,0.995951
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\IMG_1526.jpg,late_blight,early_blight,0,0.006576,0.55382,0.439605
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\IMG_2254.JPG.jpg,late_blight,early_blight,0,0.0,0.999609,0.00039
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\IMG_4182.JPG.jpg,late_blight,early_blight,0,1e-06,0.999796,0.000203
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\IMG_5360.jpg,late_blight,late_blight,1,0.0,4.9e-05,0.999951
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\IMG_5368.jpg,late_blight,late_blight,1,0.0,3e-06,0.999997
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\IMG_5813.jpg,late_blight,late_blight,1,0.0,1.9e-05,0.999981
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late%20blight%20tomato1.jpg,late_blight,late_blight,1,6.5e-05,2e-06,0.999933
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late-Blight-A.jpg,late_blight,late_blight,1,2e-06,0.350433,0.649565
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late-blight-foliar-leasion-on-tomato.jpg,late_blight,late_blight,1,5e-06,0.030251,0.969744
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late-blight-fungicides.jpg,late_blight,late_blight,1,1e-06,8.1e-05,0.999918
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late-blight-on-a-tomato-leaf.jpg,late_blight,late_blight,1,0.000967,0.059669,0.939365
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late-Blight-on-Tomato-4JDill.jpg,late_blight,late_blight,1,8.6e-05,0.000847,0.999067
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late-blight-phytophthora-infestans-damage-to-tomato-leaves-and-fruit-cmnxnf.jpg,late_blight,early_blight,0,1.3e-05,0.996164,0.003823
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late-blight-symptoms-on-tomato-leaves-1r3uhy2.jpg,late_blight,early_blight,0,0.001258,0.700333,0.298409
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late-blight-tom-leaf.jpg,late_blight,late_blight,1,0.000268,0.027169,0.972563
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late-blight-tomato-leaf-VikramBisht-MBag.jpg,late_blight,late_blight,1,0.0,0.001217,0.998783
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late-blight-tomato-leaf.jpg,late_blight,late_blight,1,0.0,0.0,1.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late-blight-tomato.jpg,late_blight,late_blight,1,5e-06,0.249472,0.750523
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late-blight-TomC2-10.jpg,late_blight,early_blight,0,1e-06,0.999936,6.4e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight1.jpg,late_blight,late_blight,1,0.002392,0.028351,0.969257
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late_Blight_2.jpg,late_blight,late_blight,1,0.004282,0.480817,0.5149
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_2013_longisland1x1200.jpg,late_blight,early_blight,0,0.000292,0.603442,0.396266
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_2013_longisland2x1200.jpg,late_blight,early_blight,0,1e-06,0.997592,0.002407
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_drought_leaves1x1200.jpg,late_blight,early_blight,0,6.5e-05,0.994634,0.005301
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_drought_leavescuux1200.jpg,late_blight,late_blight,1,0.0,1.8e-05,0.999982
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Late_blight_on_tomato_leaf_%287871756748%29.jpg,late_blight,late_blight,1,1e-05,6.2e-05,0.999928
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_leaf.jpg,late_blight,late_blight,1,0.000632,0.001714,0.997654
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_leaf1x1200.jpg,late_blight,late_blight,1,4.9e-05,0.00072,0.999231
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_leaf5x12001-650x305.jpg,late_blight,late_blight,1,0.0,6e-05,0.99994
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_leaf5x12001.jpg,late_blight,late_blight,1,0.0,0.0,1.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_leaf_.jpg,late_blight,early_blight,0,0.0,0.999997,3e-06
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_leaf_sporex1200.jpg,late_blight,late_blight,1,0.02031,0.091422,0.888268
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_leavesx500.jpg,late_blight,healthy,0,0.50256,0.464926,0.032514
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_transplant2x1200.jpg,late_blight,late_blight,1,0.001943,0.494708,0.503349
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\late_blight_tomato_unusual-symptomsx1200.jpg,late_blight,late_blight,1,0.000129,0.031571,0.9683
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\LateBlight-Leaflet-Large-Spot_9005-ROTATED-sbzntn.jpg,late_blight,late_blight,1,1e-06,4.4e-05,0.999955
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\LateBlight-Tomato-JJ-2009-17nxg4q.jpg,late_blight,late_blight,1,5e-06,0.004714,0.99528
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\lateblight2.jpg,late_blight,late_blight,1,0.268516,0.0,0.731484
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\LateBlightLeaf.jpg,late_blight,late_blight,1,0.000129,0.010266,0.989605
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\lateblightTom_lesion.jpg,late_blight,late_blight,1,6e-06,0.000809,0.999185
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\lateblightTom_lesion3.jpg,late_blight,late_blight,1,2e-06,0.000395,0.999603
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\LateBlt09_05.jpg,late_blight,early_blight,0,0.240159,0.758001,0.00184
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\LateBlt_FromRusinek.jpg,late_blight,late_blight,1,7e-06,0.222642,0.777351
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\LB-2-225x300.jpg,late_blight,late_blight,1,2e-06,0.000692,0.999306
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\lb2.jpg,late_blight,late_blight,1,0.000194,0.000237,0.999569
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\lb_leaf_lesions2x1200.jpg,late_blight,early_blight,0,0.000492,0.976519,0.022989
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\lb_leaf_lesions3x1200.jpg,late_blight,late_blight,1,1e-06,0.000186,0.999813
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\lb_leaf_lesions4x1200.jpg,late_blight,late_blight,1,1e-06,0.00041,0.999589
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\lbleaf.jpg,late_blight,late_blight,1,0.000354,0.065074,0.934572
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\LBleaf2INIA_0.jpg,late_blight,late_blight,1,0.0,7e-06,0.999993
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\p1020076cs.jpg,late_blight,late_blight,1,0.0,1.1e-05,0.999989
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Pest2369.jpg,late_blight,late_blight,1,1.2e-05,0.0643,0.935688
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\photo-2.jpg,late_blight,late_blight,1,7e-06,0.020058,0.979935
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\photo-9.jpg,late_blight,late_blight,1,5e-06,0.298935,0.701059
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\stock-photo-tomato-plants-infected-by-the-late-blight-plant-pathogen-phytophthora-infestans-macro-539209615.jpg,late_blight,early_blight,0,5e-06,0.862554,0.137441
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\symptoms_of_late_blight.jpg2__0.jpg,late_blight,late_blight,1,2.1e-05,0.000731,0.999248
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\symptoms_of_late_blight_0.jpg,late_blight,early_blight,0,0.001467,0.972633,0.0259
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\ToamtoLateBlight3-Version-3-oohvze.jpg,late_blight,late_blight,1,4e-06,1e-06,0.999995
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Tomato%20late%20blight%20lesion%20closeup%2013F.JPG.jpg,late_blight,late_blight,1,1.9e-05,0.000172,0.999808
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\TOMATO%20LATE%20BLIGHT%20ON%20LEAF.jpg,late_blight,late_blight,1,0.000939,0.000659,0.998403
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato+blight.jpg,late_blight,late_blight,1,0.0,0.022662,0.977338
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-blight-phytophthora-infestans-close-up-of-infected-leaf-b5n95x.jpg,late_blight,late_blight,1,9.2e-05,0.08029,0.919619
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-conn-2015-137c.jpg,late_blight,late_blight,1,0.0,1e-06,0.999999
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-conn-2015-139rcs.jpg,late_blight,late_blight,1,0.0,0.000412,0.999588
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-foliar-lesions_Scot-Nelson_CC-BY-SA-2.0.jpg,late_blight,late_blight,1,0.0,7.9e-05,0.999921
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-leaf-61-3x32.jpg,late_blight,late_blight,1,1e-05,0.011616,0.988374
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Tomato-late-blight-leaf-Margaret-McGrath-Cornell-Bugwood.jpg,late_blight,late_blight,1,1.6e-05,0.000964,0.99902
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-phytophthora-infestans-lesions-and-damage-on-tomato-bh3w9j.jpg,late_blight,early_blight,0,0.0,0.999953,4.7e-05
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-phytophthora-infestans-lesions-on-greenhouse-grown-ATA11J.jpg,late_blight,late_blight,1,0.000289,0.013175,0.986536
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-phytophthora-infestans-mycelium-and-lesions-on-a15yr2.jpg,late_blight,late_blight,1,3.9e-05,0.014156,0.985805
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-phytophthora-infestans-necrosis-sporulation-on-a-tomato-leaf-underside-X5YDDP.jpg,late_blight,late_blight,1,0.002997,0.001134,0.995869
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-phytophthora-infestans-necrosis-sporulation-on-a-tomato-leaf-underside-XA233C.jpg,late_blight,late_blight,1,0.00034,0.00332,0.99634
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-phytophthora-infestans-on-tomato-leaves-a15ym0.jpg,late_blight,early_blight,0,0.000357,0.986179,0.013463
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato-late-blight-sporulation-on-a-tomato-leaflet-picture-id81781370_s=612x612.jpg,late_blight,late_blight,1,0.0,1e-06,1.0
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Tomato-Late-BlightBM.jpg,late_blight,late_blight,1,5.7e-05,7e-06,0.999935
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato.early.blightH.jpg,late_blight,early_blight,0,2.4e-05,0.998898,0.001078
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\Tomato_Blight_Leaves.JPG.jpg,late_blight,early_blight,0,8.7e-05,0.901248,0.098665
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato_D33a-Late-blight-015-OMAFHRT_zoom.jpg,late_blight,late_blight,1,0.000408,0.00654,0.993052
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato_late-blight_01_zoom.jpg,late_blight,late_blight,1,0.0,0.049192,0.950808
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato_late-blight_03_zoom.jpg,late_blight,early_blight,0,0.064811,0.849308,0.085882
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato_late-blight_04_zoom.jpg,late_blight,early_blight,0,2e-05,0.987512,0.012468
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\tomato_late-blight_05_zoom.jpg,late_blight,late_blight,1,0.000244,0.27599,0.723765
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\TomatoBlight.JPG.jpg,late_blight,late_blight,1,1e-06,5e-06,0.999994
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\TomatoLateBlight-3-Underside-2ebj05b-300x225.jpg,late_blight,late_blight,1,1e-06,0.000408,0.99959
+C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantDoc-Dataset\train\Tomato leaf late blight\TomatoLateBlightTop.jpg,late_blight,late_blight,1,0.0,1.9e-05,0.999981

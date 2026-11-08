@@ -1,0 +1,11 @@
+{
+  "root": "C:\\Users\\75342\\Desktop\\NNDL project\\tomato-leaf-transfer\\data\\PlantVillage-Dataset\\raw\\color",
+  "per_class": {
+    "healthy": 1591,
+    "early_blight": 1000,
+    "late_blight": 1909
+  },
+  "unmatched_dirs": [],
+  "skipped_variants": [],
+  "total": 150
+}

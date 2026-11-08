@@ -1,0 +1,2 @@
+﻿epoch,train_loss,train_acc,val_loss,val_acc,val_macro_f1,lr_head,sec,n_train,n_val
+1,0.976889,0.485714,1.015193,0.625,0.555958,0.0,3.1,105,24

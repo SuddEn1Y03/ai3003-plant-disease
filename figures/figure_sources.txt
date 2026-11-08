@@ -1,0 +1,7 @@
+# dataset=plantvillage seed=0 per_class=2 layout=3x2
+healthy	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantVillage-Dataset\raw\color\Tomato___healthy\5ecf00da-161c-4e2f-a525-b9223adce0b6___GH_HL Leaf 252.1.JPG
+healthy	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantVillage-Dataset\raw\color\Tomato___healthy\452703f7-9106-4ed2-8f38-8ece42a32613___RS_HL 0248.JPG
+early_blight	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantVillage-Dataset\raw\color\Tomato___Early_blight\a725f34d-c57c-4189-9ec8-6aeec7fb6a78___RS_Erly.B 6452.JPG
+early_blight	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantVillage-Dataset\raw\color\Tomato___Early_blight\76e4e737-6526-4007-923f-5b6c1e9951ed___RS_Erly.B 7759.JPG
+late_blight	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantVillage-Dataset\raw\color\Tomato___Late_blight\ce6a5c52-75d4-4d81-8d7e-3ece1c7812f3___GHLB2 Leaf 8872.JPG
+late_blight	C:\Users\75342\Desktop\NNDL project\tomato-leaf-transfer\data\PlantVillage-Dataset\raw\color\Tomato___Late_blight\a5278b93-6815-488a-b359-27edb3ff7220___RS_Late.B 5381.JPG

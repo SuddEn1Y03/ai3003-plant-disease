@@ -1,0 +1,53 @@
+{
+  "tag": "test",
+  "n": 21,
+  "loss": 1.063671,
+  "accuracy": 0.333333,
+  "macro_f1": 0.17284,
+  "per_class": [
+    {
+      "class": "healthy",
+      "support": 7,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "class": "early_blight",
+      "support": 7,
+      "precision": 0.35,
+      "recall": 1.0,
+      "f1": 0.518519
+    },
+    {
+      "class": "late_blight",
+      "support": 7,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  ],
+  "confusion_matrix": [
+    [
+      0,
+      6,
+      1
+    ],
+    [
+      0,
+      7,
+      0
+    ],
+    [
+      0,
+      7,
+      0
+    ]
+  ],
+  "class_order": [
+    "healthy",
+    "early_blight",
+    "late_blight"
+  ],
+  "note": "所有数字来自本机实际运行，请勿手改。"
+}
