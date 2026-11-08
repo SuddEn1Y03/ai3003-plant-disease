@@ -1,49 +1,48 @@
-# 数据集来源说明（提交 ZIP 时附上本文件）
+# Dataset sources
 
-> 课程要求"数据集链接说明"，本文件就是给助教看的那一页。
-> 把方括号里的内容替换成你们真实的信息；没填完不要提交。
+Two public datasets are used. Neither is redistributed in this repository; both are downloaded
+from their original repositories.
 
 ## 1. PlantVillage
 
-| 项目 | 内容 |
+| Item | Value |
 |---|---|
-| 来源 | https://github.com/spMohanty/PlantVillage-Dataset |
-| 论文 | Mohanty, S. P., Hughes, D. P., & Salathé, M. (2016). Using deep learning for image-based plant disease detection. *Frontiers in Plant Science*, 7, 1419. https://doi.org/10.3389/fpls.2016.01419 |
-| 使用部分 | `raw/color/` 下的番茄三类：`Tomato___healthy`、`Tomato___Early_blight`、`Tomato___Late_blight` |
-| 未使用部分 | `raw/grayscale/`、`raw/segmented/`（同一批叶片的变体，计入会重复计数） |
-| 获取方式 | `[待填：git clone / 官网下载 ZIP]` |
-| 版本 / 下载日期 | commit `[待填：git rev-parse HEAD]`，下载于 `[待填：YYYY-MM-DD]` |
-| 未纳入的原因 | `[待填：例如无法解码 __ 张]` |
+| Source | https://github.com/spMohanty/PlantVillage-Dataset |
+| Paper | Mohanty, S. P., Hughes, D. P., & Salathé, M. (2016). Using deep learning for image-based plant disease detection. *Frontiers in Plant Science*, 7, 1419. https://doi.org/10.3389/fpls.2016.01419 |
+| Part used | `raw/color/` only, three tomato classes: `Tomato___healthy`, `Tomato___Early_blight`, `Tomato___Late_blight` |
+| Not used | `raw/grayscale/` and `raw/segmented/`: the same leaves in other variants, which would be counted twice |
+| Retrieval | `git clone --depth 1 --filter=blob:none --sparse https://github.com/spMohanty/PlantVillage-Dataset.git`, then `git sparse-checkout set raw/color/<the three classes>` |
+| Version | master branch, downloaded 2026-11-07 |
+| Size | 4,500 images (1,591 / 1,000 / 1,909) |
 
 ## 2. PlantDoc
 
-| 项目 | 内容 |
+| Item | Value |
 |---|---|
-| 来源 | https://github.com/pratikkayal/PlantDoc-Dataset |
-| 论文 | Singh, D., Jain, N., Jain, P., Kayal, P., Kumawat, S., & Batra, N. (2020). PlantDoc: A dataset for visual plant disease detection. *Proceedings of the 7th ACM IKDD CoDS and 25th COMAD*, 249–253. https://doi.org/10.1145/3371158.3371196 |
-| 使用部分 | `Tomato leaf`（健康）、`Tomato Early blight leaf`、`Tomato leaf late blight`（已按仓库 `master` 目录列表核对） |
-| 未使用的番茄类 | `Tomato Septoria leaf spot`、`Tomato leaf bacterial spot`、`Tomato leaf mosaic virus`、`Tomato leaf yellow virus`、`Tomato mold leaf`、`Tomato two spotted spider mites leaf`（共 6 个，均丢弃） |
-| 使用方式 | **仅用于评估**（跨域测试集），不参与任何训练、验证或模型选择 |
-| 获取方式 | `[待填]` |
-| 版本 / 下载日期 | commit `[待填]`，下载于 `[待填]` |
-| 类别映射 | 见报告 Table 7 与仓库 `data_stats.py` 中的 `DEFAULT_MAP` |
-| 未纳入的类 | 细菌性斑点病、Septoria 叶斑病、花叶病毒、黄化病毒、霉叶、红蜘蛛等番茄类，共 `[待填：__]` 张 |
+| Source | https://github.com/pratikkayal/PlantDoc-Dataset |
+| Paper | Singh, D., Jain, N., Jain, P., Kayal, P., Kumawat, S., & Batra, N. (2020). PlantDoc: A dataset for visual plant disease detection. *Proceedings of the 7th ACM IKDD CoDS and 25th COMAD*, 249–253. https://doi.org/10.1145/3371158.3371196 |
+| Part used | `Tomato leaf` (healthy), `Tomato Early blight leaf`, `Tomato leaf late blight`; verified against the repository listing |
+| Not used | Six other tomato classes (Septoria leaf spot, bacterial spot, mosaic virus, yellow virus, mold, spider mites) and 21 other crops: 2,310 images in total |
+| Role | External evaluation only. Never used for training, validation or checkpoint selection |
+| Version | master branch (archive download), 2026-11-07 |
+| Size | 2,572 images in total, of which 262 map to the three classes (63 / 88 / 111) |
 
-## 3. 复现方式
+## 3. Reproduction
 
 ```bash
-git clone https://github.com/spMohanty/PlantVillage-Dataset.git data/PlantVillage-Dataset
-git clone https://github.com/pratikkayal/PlantDoc-Dataset.git      data/PlantDoc-Dataset
+git clone --depth 1 https://github.com/pratikkayal/PlantDoc-Dataset.git data/PlantDoc-Dataset
+git clone --depth 1 --filter=blob:none --sparse https://github.com/spMohanty/PlantVillage-Dataset.git data/PlantVillage-Dataset
+cd data/PlantVillage-Dataset
+git sparse-checkout set raw/color/Tomato___healthy raw/color/Tomato___Early_blight raw/color/Tomato___Late_blight
 
+cd ../..
 python data_stats.py --root plantvillage=data/PlantVillage-Dataset/raw/color \
-                     --root plantdoc=data/PlantDoc-Dataset \
-                     --out-csv stats/class_counts.csv --out-md stats/class_counts.md
-python make_figures.py --root plantvillage=data/PlantVillage-Dataset/raw/color \
-                       --root plantdoc=data/PlantDoc-Dataset --out-dir figures
+                     --root plantdoc=data/PlantDoc-Dataset --list-only
 ```
 
-得到的样本数应与报告 Table 1 完全一致（`[待填：核对结果，一致 / 差异 __ 张，原因 __]`）。
+The counts printed by `--list-only` should match Table 1 of the report.
 
-## 4. 声明
+## 4. Licence
 
-两个数据集均为公开学术数据集，版权归原作者所有。本仓库**不重新分发图片**，只提供下载链接与统计脚本。使用范围限于 AI3003 课程项目。
+Both datasets are public and academic. Copyright remains with their authors; this repository
+stores links and statistics only, never the images.

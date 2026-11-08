@@ -1,62 +1,62 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 train_baseline.py
 =================
-番茄叶片三分类（healthy / early_blight / late_blight）的极简训练脚本。
+Minimal training script for three-class tomato leaf classification.
 
-支持两种模型：
-  * basiccnn  : 3 层卷积 + 全局平均池化 + 全连接（参数量很小，CPU 也能跑）
-  * resnet18  : torchvision ResNet18，可选 ImageNet 预训练权重，分类头替换为 3 类
+Two models are supported:
+  * basiccnn  : three conv blocks, global average pooling, one linear layer (94k parameters)
+  * resnet18  : torchvision ResNet18, optional ImageNet weights, three-class head
 
-支持的实验（对应报告 3.6 的 E1–E5）：
+Experiment set (E1-E5 in Section 3.4 of the report):
   E1  --model basiccnn
   E2  --model resnet18
   E3  --model resnet18 --pretrained
   E4  --model resnet18 --pretrained --augment
-  E5  训练时与 E3/E4 相同，训练完加 --plantdoc-root 做跨域评估
-      （E5 不重新训练：用 E4 的 best.pt + `--eval-only`，见 README）
+  E5  reuses the E4 checkpoint for cross-domain evaluation; no retraining
+      (use --eval-only with the E4 best.pt, see the README)
 
-用法示例
+Examples
 --------
-    # 0) 不装 PyTorch 也能先检查数据（只依赖 PIL/numpy）
+    # 0) check the data before PyTorch is installed (PIL and numpy only)
     python train_baseline.py --data-root D:/data/PlantVillage/color --dry-run
 
-    # 1) 打印模型结构和参数量
+    # 1) print the model summary and parameter count
     python train_baseline.py --model resnet18 --print-model
 
-    # 2) 训练 baseline（CPU 可跑，先用小样本 + 少量 epoch 验证流程）
+    # 2) train the baseline (CPU is fine; start with a small subset and few epochs)
     python train_baseline.py --data-root D:/data/PlantVillage/color \
         --model basiccnn --epochs 5 --batch-size 32 --limit-per-class 200 \
         --out-dir runs/E1_basiccnn_cpu
 
-    # 3) 迁移学习 + 数据增强
+    # 3) transfer learning with augmentation
     python train_baseline.py --data-root D:/data/PlantVillage/color \
         --model resnet18 --pretrained --augment --epochs 10 \
         --out-dir runs/E4_resnet18_pre_aug
 
-    # 4) 用训好的权重做 PlantDoc 跨域评估（不重新训练）
+    # 4) cross-domain evaluation with a trained checkpoint (no retraining)
     python train_baseline.py --data-root D:/data/PlantVillage/color \
         --model resnet18 --pretrained --augment --eval-only \
         --ckpt runs/E4_resnet18_pre_aug/best.pt \
         --plantdoc-root D:/data/PlantDoc-Dataset --split test
 
-输出（--out-dir 下）
+Output (inside --out-dir)
 --------------------
-    log.csv          每个 epoch 的 train_loss / train_acc / val_loss / val_acc / val_macro_f1
-    args.json        本次运行的完整参数（复现用）
-    best.pt/last.pt  权重
+    log.csv          train_loss / train_acc / val_loss / val_acc / val_macro_f1 per epoch
+    args.json        every argument of the run
+    best.pt/last.pt  weights
     metrics_val.json / metrics_test.json / metrics_plantdoc.json
     confusion_matrix_test.csv
-    predictions_test.csv  逐图预测，方便找错例
-    train.log        标准输出的副本（重定向得到，见 README）
+    predictions_test.csv  per-image predictions, for error analysis
+    train.log        a copy of stdout, produced by redirection (see README)
 
-注意
+Notes
 ----
-* 本脚本**不预设**任何准确率。所有数字都来自你机器上的真实运行。
-* 类别不平衡时默认不加权；--class-weight inverse 可以开启反频率加权（属于额外实验，
-  需要在报告里单独说明，不要和主实验混在一起报）。
-* Windows 上默认 --num-workers 0，避免多进程 DataLoader 的句柄问题。
+* No accuracy is assumed anywhere; every number comes from a real run on your machine.
+* Class weighting is off by default; --class-weight inverse enables inverse-frequency
+    weighting, which is an extra experiment and must be reported separately.
+* --num-workers defaults to 0 on Windows to avoid DataLoader handle problems.
 """
 
 from __future__ import annotations
@@ -82,7 +82,7 @@ from data_stats import (
     scan_class_dirs,
 )
 
-# PyTorch 只在真正训练时才需要；--dry-run / --print-model 前也不会 import 失败
+# PyTorch is only needed for training; --dry-run works without it
 try:
     import torch
     import torch.nn as nn
@@ -90,7 +90,7 @@ try:
     from torchvision import models, transforms
 
     HAS_TORCH = True
-except ModuleNotFoundError:  # 没装 torch 时仍然可以跑 --dry-run
+except ModuleNotFoundError:  # --dry-run still works without torch
     torch = None
     nn = None
     DataLoader = Dataset = None
@@ -100,79 +100,79 @@ except ModuleNotFoundError:  # 没装 torch 时仍然可以跑 --dry-run
 IMAGENET_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_STD = (0.229, 0.224, 0.225)
 IMG_EXTS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
-CLASS_NAMES = list(UNIFIED_LABELS)  # 标签顺序固定：0=healthy 1=early 2=late
+CLASS_NAMES = list(UNIFIED_LABELS)  # fixed label order: healthy, early blight, late blight
 
 
 # ==========================================================================
-# 1. 参数
+# 1. Arguments
 # ==========================================================================
 def parse_args(argv=None):
     ap = argparse.ArgumentParser(
-        description="番茄叶片三分类 baseline / 迁移学习训练脚本",
+        description="Three-class tomato leaf training: baseline and transfer learning",
         formatter_class=argparse.RawDescriptionHelpFormatter)
 
-    # 数据
+    # Data
     ap.add_argument("--data-root", type=Path, required=False,
-                    help="PlantVillage 彩色图的根目录（其下是各类别子目录）")
+                    help="root of the PlantVillage colour images (class sub-folders inside)")
     ap.add_argument("--dataset-name", default="plantvillage",
-                    help="用于查类名映射的键，默认 plantvillage")
-    ap.add_argument("--mapping", type=Path, default=None, help="自定义类名映射 JSON")
+                    help="key used to look up the label mapping (default plantvillage)")
+    ap.add_argument("--mapping", type=Path, default=None, help="custom label mapping JSON")
     ap.add_argument("--plantdoc-root", type=Path, default=None,
-                    help="可选：PlantDoc 根目录，训练完做跨域评估")
+                    help="optional: PlantDoc root for the cross-domain evaluation")
     ap.add_argument("--plantdoc-split", default="all", choices=["all", "train", "test"])
     ap.add_argument("--limit-per-class", type=int, default=0,
-                    help="每类最多用多少张（0=全部）；冒烟测试用 50")
+                    help="cap per class (0 = all images); use 50 for a smoke test")
     ap.add_argument("--split", default="70/15/15",
-                    help="训练/验证/测试比例，默认 70/15/15")
+                    help="train/validation/test split (default 70/15/15)")
 
-    # 模型
+    # Model
     ap.add_argument("--model", default="basiccnn", choices=["basiccnn", "resnet18"])
     ap.add_argument("--pretrained", action="store_true",
-                    help="ResNet18 使用 ImageNet 预训练权重（需要联网下载，或本地缓存）")
+                    help="start from ImageNet weights (downloaded once, then cached)")
     ap.add_argument("--freeze-backbone", action="store_true",
-                    help="冻结 ResNet18 的 conv1~layer1（只训练后面的层），小样本/CPU 时更快")
+                    help="freeze conv1 to layer1 of ResNet18; faster on small data and on CPU")
     ap.add_argument("--image-size", type=int, default=224)
-    ap.add_argument("--print-model", action="store_true", help="打印结构和参数量后退出")
+    ap.add_argument("--print-model", action="store_true", help="print the model summary and exit")
 
-    # 训练
-    ap.add_argument("--augment", action="store_true", help="开启训练集数据增强")
+    # Training
+    ap.add_argument("--augment", action="store_true", help="enable training-time augmentation")
     ap.add_argument("--epochs", type=int, default=10)
     ap.add_argument("--batch-size", type=int, default=32)
-    ap.add_argument("--lr", type=float, default=1e-3, help="分类头/CNN 的学习率")
+    ap.add_argument("--lr", type=float, default=1e-3, help="learning rate for the head or the CNN")
     ap.add_argument("--backbone-lr", type=float, default=None,
-                    help="预训练 ResNet18 主干的学习率，默认 = --lr / 10")
+                    help="learning rate for the pretrained backbone (default --lr / 10)")
     ap.add_argument("--weight-decay", type=float, default=1e-4)
     ap.add_argument("--label-smoothing", type=float, default=0.0)
     ap.add_argument("--class-weight", default="none", choices=["none", "inverse"],
-                    help="inverse = 按类别频率的倒数加权（额外实验，默认关闭）")
+                    help="inverse = weight classes by inverse frequency (extra experiment, off by default)")
     ap.add_argument("--patience", type=int, default=5,
-                    help="验证集 macro-F1 连续多少个 epoch 不提升就早停（0=不早停）")
+                    help="stop after this many epochs without a validation macro-F1 gain (0 = never)")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--num-workers", type=int, default=0)
     ap.add_argument("--device", default="auto", help="auto / cpu / cuda")
     ap.add_argument("--max-steps", type=int, default=0,
-                    help="每个 epoch 最多多少 step（0=不限），快速验证用")
+                    help="cap the number of steps per epoch (0 = no cap), useful for a quick check")
 
-    # 运行控制
+    # Run control
     ap.add_argument("--out-dir", type=Path, default=Path("runs/baseline"))
-    ap.add_argument("--eval-only", action="store_true", help="只做评估，不训练")
-    ap.add_argument("--ckpt", type=Path, default=None, help="--eval-only 时的权重路径")
+    ap.add_argument("--eval-only", action="store_true", help="evaluate only, no training")
+    ap.add_argument("--ckpt", type=Path, default=None, help="checkpoint used by --eval-only")
     ap.add_argument("--dry-run", action="store_true",
-                    help="只检查数据和配置，不训练（不需要 PyTorch）")
+                    help="check the data and the configuration only, no training (no PyTorch needed)")
     return ap.parse_args(argv)
 
 
 # ==========================================================================
-# 2. 数据索引（不依赖 torch）
+# 2. Data indexing (no torch needed)
 # ==========================================================================
 def build_index(root: Path, ds_name: str, mapping: dict,
                 limit_per_class: int = 0, split_filter: str = "all"):
     """
-    返回 items: [(Path, label:int)]，label 顺序固定为 CLASS_NAMES。
-    同时返回统计信息 dict。
+    Return items: [(Path, label:int)] with labels ordered as CLASS_NAMES.
+    A statistics dictionary is returned as well.
     """
     if not root.exists():
-        raise FileNotFoundError(f"数据目录不存在：{root}")
+        raise FileNotFoundError(f"data directory not found: {root}")
     lookup = build_lookup(mapping.get(ds_name, DEFAULT_MAP.get(ds_name, {})))
     found, skipped = scan_class_dirs(root, {"grayscale", "segmented"})
 
@@ -207,8 +207,8 @@ def build_index(root: Path, ds_name: str, mapping: dict,
 
 
 def stratified_split(items, ratios=(0.70, 0.15, 0.15), seed=42):
-    """按类别分层划分，返回 (train, val, test)。保证每类尽量有样本进 val/test。"""
-    assert abs(sum(ratios) - 1.0) < 1e-6, "划分比例之和必须为 1"
+    """Class-stratified split returning (train, val, test); every class reaches val and test."""
+    assert abs(sum(ratios) - 1.0) < 1e-6, "the split ratios must sum to 1"
     rng = random.Random(seed)
     by_cls: dict[int, list] = {}
     for p, y in items:
@@ -221,7 +221,7 @@ def stratified_split(items, ratios=(0.70, 0.15, 0.15), seed=42):
         n = len(lst)
         n_train = int(round(n * ratios[0]))
         n_val = int(round(n * ratios[1]))
-        # 小样本保护：尽量让 val/test 至少各 1 张
+        # Tiny-class guard: keep at least one image in val and test
         if n >= 3:
             n_val = max(1, n_val)
             n_test = max(1, n - n_train - n_val)
@@ -246,7 +246,7 @@ def describe_split(name, split):
 
 
 # ==========================================================================
-# 3. 指标（纯 numpy，不依赖 sklearn）
+# 3. Metrics (numpy only, no sklearn)
 # ==========================================================================
 def confusion_matrix(y_true, y_pred, k):
     cm = np.zeros((k, k), dtype=np.int64)
@@ -256,7 +256,7 @@ def confusion_matrix(y_true, y_pred, k):
 
 
 def per_class_scores(cm):
-    """返回 [(support, precision, recall, f1)]，类别顺序即行顺序。"""
+    """Return [(support, precision, recall, f1)] in row order."""
     out = []
     for i in range(cm.shape[0]):
         tp = cm[i, i]
@@ -271,7 +271,7 @@ def per_class_scores(cm):
 
 
 def macro_f1(cm):
-    """只在 support>0 的类别上取平均（测试集缺类时不会凭空记 0 分）。"""
+    """Average over classes with support > 0, so an absent class is not scored as zero."""
     scores = [s for s in per_class_scores(cm) if s[0] > 0]
     if not scores:
         return 0.0
@@ -279,18 +279,18 @@ def macro_f1(cm):
 
 
 # ==========================================================================
-# 4. 模型（需要 torch）
+# 4. Models (torch required)
 # ==========================================================================
 if HAS_TORCH:
 
     class BasicCNN(nn.Module):
         """
-        3 层卷积基线：
+        Three-block convolutional baseline:
           Conv3-32  -> BN -> ReLU -> MaxPool   (224 -> 112)
           Conv32-64 -> BN -> ReLU -> MaxPool   (112 -> 56)
           Conv64-128-> BN -> ReLU -> MaxPool   (56 -> 28)
           AdaptiveAvgPool(1) -> Dropout -> FC(128 -> 3)
-        结构简单、参数少，用来回答"不加任何技巧能到什么水平"。
+        Small and simple: it answers what is possible without any transfer or augmentation.
         """
 
         def __init__(self, num_classes=3, dropout=0.3):
@@ -312,7 +312,7 @@ if HAS_TORCH:
             return self.classifier(x)
 
     class ImageListDataset(Dataset):
-        """把 [(path, label)] 包成 Dataset；图片读取失败时返回全黑图并计数。"""
+        """Wrap [(path, label)] as a Dataset; unreadable images become a black image and are counted."""
 
         def __init__(self, items, transform, verify=False):
             self.items = items
@@ -328,7 +328,7 @@ if HAS_TORCH:
             path, y = self.items[i]
             try:
                 img = Image.open(path).convert("RGB")
-            except Exception:  # noqa: BLE001 损坏图片兜底
+            except Exception:  # noqa: BLE001 corrupt image fallback
                 self.bad += 1
                 img = Image.new("RGB", (224, 224), (0, 0, 0))
             return self.transform(img), y
@@ -341,14 +341,14 @@ def count_params(model):
 
 
 def build_model(name, num_classes=3, pretrained=False, freeze_backbone=False):
-    """构造模型；返回 (model, 说明文字)。print-model 时也会调用它。"""
+    """Build a model and return it with a short description; also used by --print-model."""
     if not HAS_TORCH:
-        raise SystemExit("没有安装 PyTorch，先 `pip install -r requirements.txt`。")
+        raise SystemExit("PyTorch is not installed; run `pip install -r requirements.txt`.")
     if name == "basiccnn":
         model = BasicCNN(num_classes=num_classes)
         return model, "BasicCNN (3 conv blocks, GAP, FC)"
 
-    # torchvision 版本兼容：新版本用 weights=，老版本用 pretrained=
+    # torchvision compatibility: new versions take weights=, old ones take pretrained=
     try:
         weights = models.ResNet18_Weights.IMAGENET1K_V1 if pretrained else None
         model = models.resnet18(weights=weights)
@@ -356,7 +356,7 @@ def build_model(name, num_classes=3, pretrained=False, freeze_backbone=False):
     except AttributeError:  # torchvision < 0.13
         model = models.resnet18(pretrained=pretrained)
         note = "ResNet18 (legacy API)"
-    # 分类头替换：fc 输出 3 类
+    # Replace the classifier so that fc outputs three logits
     n_feat = model.fc.in_features
     model.fc = nn.Linear(n_feat, num_classes)
     if freeze_backbone:
@@ -375,7 +375,7 @@ def build_model(name, num_classes=3, pretrained=False, freeze_backbone=False):
 # ==========================================================================
 def build_transforms(image_size=224, augment=False):
     if not HAS_TORCH:
-        raise SystemExit("没有安装 PyTorch。")
+        raise SystemExit("PyTorch is not installed.")
     normalize = transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD)
     if augment:
         train_tf = transforms.Compose([
@@ -387,7 +387,7 @@ def build_transforms(image_size=224, augment=False):
             normalize,
         ])
     else:
-        # 不开增强时也要保证和验证集同样的几何处理，否则两组实验不可比
+        # Without augmentation the training set still needs the same geometry as validation,
         train_tf = transforms.Compose([
             transforms.Resize(int(image_size * 1.14)),
             transforms.CenterCrop(image_size),
@@ -404,7 +404,7 @@ def build_transforms(image_size=224, augment=False):
 
 
 # ==========================================================================
-# 6. 训练 / 评估
+# 6. Training and evaluation
 # ==========================================================================
 def evaluate(model, loader, criterion, device, num_classes=3, collect=None):
     model.eval()
@@ -451,7 +451,7 @@ def save_metrics(metrics, out_dir, tag):
         ],
         "confusion_matrix": metrics["cm"].tolist(),
         "class_order": CLASS_NAMES,
-        "note": "所有数字来自本机实际运行，请勿手改。",
+        "note": "Produced by an actual run; do not edit these numbers by hand.",
     }
     out_dir.mkdir(parents=True, exist_ok=True)
     p = out_dir / f"metrics_{tag}.json"
@@ -484,21 +484,21 @@ def train(args):
     items, stats = build_index(args.data_root, args.dataset_name, mapping,
                                args.limit_per_class)
     if stats["unmatched_dirs"]:
-        print("[WARN] 这些目录没匹配到统一标签，已忽略：")
+        print("[WARN] these folders have no unified label and are ignored:")
         for s, c, n in stats["unmatched_dirs"]:
             print(f"        {s}/{c} (n={n})")
     if stats["total"] == 0:
-        raise SystemExit("没有读到任何图片，请检查 --data-root 和类名映射。")
-    if args.max_steps or args.limit_per_class or args.epochs <= 2:
-        print("[WARN] 冒烟/调试模式：样本数或 step 数被刻意压小，训练不充分。")
-        print("       这次跑出来的 acc / macro-F1 只用于确认代码能跑通，")
-        print("       不代表模型效果，绝对不要写进报告。正式实验去掉")
-        print("       --limit-per-class 和 --max-steps，并把 --epochs 设到 20 左右。")
+        raise SystemExit("no images were read; check --data-root and the label mapping.")
+    if args.max_steps or args.limit_per_class:
+        print("[WARN] smoke-test mode: the subset or the step count is truncated on purpose.")
+        print("       The accuracy and macro-F1 below only show that the code runs; ")
+        print("       they are not a result. For the real runs, drop ")
+        print("       --limit-per-class and --max-steps.")
 
     r = [float(x) for x in args.split.split("/")]
     r = [x / sum(r) for x in r]
     train_items, val_items, test_items = stratified_split(items, tuple(r), args.seed)
-    print("[INFO] 划分：")
+    print("[INFO] split:")
     describe_split("train", train_items)
     describe_split("val", val_items)
     describe_split("test", test_items)
@@ -523,7 +523,7 @@ def train(args):
     print(f"[INFO] model = {note}")
     print(f"[INFO] params total={total:,}  trainable={trainable:,}")
 
-    # 损失函数（可选类别加权）
+    # Loss (optional class weighting)
     if args.class_weight == "inverse":
         cnt = np.array([sum(1 for _p, y in train_items if y == i) for i in range(len(CLASS_NAMES))],
                        dtype=np.float64)
@@ -536,13 +536,13 @@ def train(args):
     criterion = nn.CrossEntropyLoss(weight=weight,
                                     label_smoothing=args.label_smoothing)
 
-    # 优化器：预训练骨干用更小的学习率
+    # Optimizer: the pretrained backbone gets a smaller learning rate
     head_ids = {id(p) for n_, p in model.named_parameters()
                 if p.requires_grad and ("fc" in n_ or "classifier" in n_)}
     head_params = [p for n_, p in model.named_parameters()
                    if p.requires_grad and id(p) in head_ids]
-    # 注意：这里必须用 id() 比较，直接写 `p not in head_params` 会触发
-    # tensor 的逐元素 == 比较，多元素张量无法转成 bool，会直接报错
+    # Compare by id(): `p not in head_params` would compare tensors element-wise
+    # and raise, because a multi-element tensor cannot be used as a truth value
     back_params = [p for n_, p in model.named_parameters()
                    if p.requires_grad and id(p) not in head_ids]
     backbone_lr = args.backbone_lr if args.backbone_lr is not None else args.lr / 10
@@ -557,7 +557,7 @@ def train(args):
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max(args.epochs, 1))
     use_amp = device.type == "cuda"
     scaler = None
-    if use_amp:  # torch>=2.3 用 torch.amp，老版本退回 torch.cuda.amp
+    if use_amp:  # torch.amp on newer releases, torch.cuda.amp on older ones
         if hasattr(torch.amp, "GradScaler"):
             scaler = torch.amp.GradScaler("cuda", enabled=True)
         else:
@@ -624,11 +624,11 @@ def train(args):
             torch.save({"model": args.model, "state_dict": model.state_dict(),
                         "class_names": CLASS_NAMES, "args": vars(args),
                         "epoch": epoch, "val_macro_f1": vm["macro_f1"]}, best_path)
-            print(f"       -> 新的 best（val macro-F1={best_f1:.4f}），已保存 {best_path.name}")
+            print(f"       -> new best (val macro-F1={best_f1:.4f}), saved {best_path.name}")
         else:
             bad_epochs += 1
             if args.patience and bad_epochs >= args.patience:
-                print(f"[INFO] 早停：验证集连续 {bad_epochs} 个 epoch 没有提升（patience={args.patience}）")
+                print(f"[INFO] early stop: no validation gain for {bad_epochs} epochs (patience={args.patience})")
                 break
 
     log_f.close()
@@ -636,15 +636,15 @@ def train(args):
                 "class_names": CLASS_NAMES, "args": vars(args), "epoch": "last"}, 
                out_dir / "last.pt")
 
-    print(f"[INFO] 训练结束：best epoch={best_epoch}, best val macro-F1={best_f1:.4f}")
-    # 用 best 权重在 PV test 上评估
+    print(f"[INFO] training finished: best epoch={best_epoch}, best val macro-F1={best_f1:.4f}")
+    # Evaluate the best checkpoint on the PlantVillage test split
     ckpt = torch.load(best_path, map_location=device, weights_only=False)
     model.load_state_dict(ckpt["state_dict"])
     tm = evaluate(model, dl_test, criterion, device, len(CLASS_NAMES), collect=True)
     print(f"[TEST] acc={tm['acc']:.4f} macro_f1={tm['macro_f1']:.4f} n={tm['n']}")
     save_metrics(tm, out_dir, "test")
 
-    # 逐图预测，方便找错例
+    # Per-image predictions, for the error analysis
     with open(out_dir / "predictions_test.csv", "w", newline="", encoding="utf-8-sig") as f:
         w = csv.writer(f)
         w.writerow(["path", "true", "pred", "correct", "p_healthy", "p_early", "p_late"])
@@ -653,12 +653,12 @@ def train(args):
                        + [round(x, 6) for x in pr])
     print(f"[OK] {out_dir / 'predictions_test.csv'}")
 
-    # 跨域评估（E5）
+    # Cross-domain evaluation (E5)
     if args.plantdoc_root:
         cross_eval(model, args, criterion, device)
 
-    print("\n[下一步] 把 log.csv 的最后一行 / metrics_test.json 里的真实数字填进报告 4.1 节，"
-          "把 log.csv 截图放进附录。")
+    print("\n[Next] copy the numbers from metrics_test.json into Section 4.1 of the report "
+          "and put a screenshot of log.csv in the appendix.")
     return 0
 
 
@@ -667,11 +667,11 @@ def cross_eval(model, args, criterion, device):
     items, stats = build_index(args.plantdoc_root, "plantdoc", mapping,
                                split_filter=args.plantdoc_split)
     if stats["unmatched_dirs"]:
-        print("[WARN] PlantDoc 未匹配目录：")
+        print("[WARN] PlantDoc folders without a unified label:")
         for s, c, n in stats["unmatched_dirs"]:
             print(f"        {s}/{c} (n={n})")
     if not items:
-        print("[WARN] PlantDoc 没读到图片，跳过跨域评估。")
+        print("[WARN] no PlantDoc images were read; cross-domain evaluation skipped.")
         return
     ds = ImageListDataset(items, build_transforms(args.image_size, False)[1])
     dl = DataLoader(ds, batch_size=args.batch_size, shuffle=False,
@@ -689,27 +689,27 @@ def dry_run(args):
     items, stats = build_index(args.data_root, args.dataset_name, mapping,
                                args.limit_per_class)
     print("=" * 66)
-    print(f"数据根目录 : {stats['root']}")
-    print(f"识别样本数 : {stats['total']}")
+    print(f"data root      : {stats['root']}")
+    print(f"images found   : {stats['total']}")
     for k, v in stats["per_class"].items():
         print(f"   {k:<14s} {v}")
     if stats["unmatched_dirs"]:
-        print("未匹配目录（请核对类名映射）：")
+        print("unmatched folders (check the label mapping):")
         for s, c, n in stats["unmatched_dirs"]:
             print(f"   [{s}] {c}  n={n}")
     if stats["skipped_variants"]:
-        print(f"已跳过非彩色变体 {len(stats['skipped_variants'])} 个目录")
+        print(f"skipped {len(stats['skipped_variants'])} non-colour variant folders")
     r = [float(x) for x in args.split.split("/")]
     r = tuple(x / sum(r) for x in r)
     tr, va, te = stratified_split(items, r, args.seed)
-    print("按 70/15/15 分层划分后：")
+    print("after the stratified 70/15/15 split:")
     describe_split("train", tr)
     describe_split("val", va)
     describe_split("test", te)
-    # 抽检最多 20 张，确认图片能解码（数据集里偶尔会有 0 字节 / 截断文件）
+    # Check up to 20 images; datasets sometimes contain 0-byte or truncated files
     from PIL import Image
     sample = items[:20]
-    print(f"抽检图片可读性（随机前 {len(sample)} 张）：")
+    print(f"readability check on the first {len(sample)} images:")
     bad = 0
     for p, y in sample:
         try:
@@ -719,43 +719,47 @@ def dry_run(args):
         except Exception as e:  # noqa: BLE001
             bad += 1
             print(f"   BAD {p} ({e})")
-    print(f"可读 {len(sample) - bad} / {len(sample)}"
-          + ("  <-- 有文件读不出来，训练时会被替换成黑图，建议先删除" if bad else ""))
+    print(f"readable {len(sample) - bad} / {len(sample)}"
+          + ("  <-- some files cannot be read; they become black images, delete them first" if bad else ""))
     print("=" * 66)
-    print("配置：")
+    print("configuration:")
     for k in ["model", "pretrained", "augment", "epochs", "batch_size", "lr",
               "image_size", "seed", "device"]:
         print(f"   {k:<12s} {getattr(args, k)}")
-    print(f"PyTorch  : {'已安装 ' + torch.__version__ if HAS_TORCH else '未安装（dry-run 仍然可用）'}")
-    print("\n[OK] 数据管线自检通过。以上是实际扫描结果，尚未进行任何训练。")
+    print(f"PyTorch        : {'installed ' + torch.__version__ if HAS_TORCH else 'not installed (--dry-run still works)'}")
+    print("\n[OK] data pipeline check passed. These are real scan results; no training has run yet.")
     return 0
 
 
 def print_model(args):
     if not HAS_TORCH:
-        raise SystemExit("--print-model 需要 PyTorch。")
+        raise SystemExit("--print-model needs PyTorch.")
     model, note = build_model(args.model, len(CLASS_NAMES), args.pretrained,
                               args.freeze_backbone)
     total, trainable = count_params(model)
-    print(f"model : {note}")
-    n_params = 0
-    print(f"{'layer':<40s}{'type':<22s}{'out shape':<20s}{'params':>10s}")
+    print("=" * 74)
+    print(f"model            : {note}")
+    print(f"input            : [1, 3, {args.image_size}, {args.image_size}]")
+    print(f"output classes   : {len(CLASS_NAMES)}  ({', '.join(CLASS_NAMES)})")
+    print(f"total parameters : {total:,}")
+    print(f"trainable        : {trainable:,}")
+    print("=" * 74)
+    print(f"{'layer':<38s}{'type':<20s}{'params':>12s}")
+    print("-" * 74)
     for name, mod in model.named_modules():
         if len(list(mod.children())) == 0 and name:
             p = sum(x.numel() for x in mod.parameters(recurse=False))
-            if p == 0:      # 跳过 ReLU / Dropout / Pooling 这类没有参数的层
+            if p == 0:      # skip layers without parameters, such as ReLU or pooling
                 continue
-            n_params += p
-            print(f"{name[:39]:<40s}{type(mod).__name__:<22s}{'-':<20s}{p:>10,}")
-    print("-" * 92)
-    print(f"{'TOTAL':<40s}{'':<22s}{'':<20s}{total:>10,}")
-    print(f"trainable params: {trainable:,}")
-    # 用 dummy 输入跑一次，确认输出类别数
+            print(f"{name[:37]:<38s}{type(mod).__name__:<20s}{p:>12,}")
+    print("-" * 74)
+    print(f"{'TOTAL':<38s}{'':<20s}{total:>12,}")
+    # One dummy forward pass confirms the number of outputs
     model.eval()
     with torch.no_grad():
         out = model(torch.zeros(1, 3, args.image_size, args.image_size))
     print(f"dummy input [1,3,{args.image_size},{args.image_size}] -> output {tuple(out.shape)}")
-    print("[提示] 把 TOTAL 填进报告 3.4 的参数量单元格。")
+    print("[NOTE] put TOTAL into the parameter row of Table 2 in the report.")
     return 0
 
 
@@ -768,44 +772,44 @@ def main(argv=None):
         return print_model(args)
     if args.dry_run:
         if args.data_root is None:
-            raise SystemExit("--dry-run 需要 --data-root（PlantVillage 彩色图目录）")
+            raise SystemExit("--dry-run needs --data-root (the PlantVillage colour folder)")
         return dry_run(args)
     if args.eval_only:
         if args.ckpt is None:
-            raise SystemExit("--eval-only 需要 --ckpt（训练好的 best.pt）")
+            raise SystemExit("--eval-only needs --ckpt (a trained best.pt)")
         if args.plantdoc_root is None and args.data_root is None:
-            raise SystemExit("--eval-only 需要 --plantdoc-root（跨域）或 --data-root（in-domain）")
+            raise SystemExit("--eval-only needs --plantdoc-root (cross-domain) or --data-root (in-domain)")
         if not HAS_TORCH:
-            raise SystemExit("评估也需要 PyTorch：pip install -r requirements.txt")
+            raise SystemExit("evaluation also needs PyTorch: pip install -r requirements.txt")
         return eval_only(args)
     if not HAS_TORCH:
-        raise SystemExit("没有安装 PyTorch：pip install -r requirements.txt（或先用 --dry-run 检查数据）")
+        raise SystemExit("PyTorch is not installed: pip install -r requirements.txt (or use --dry-run)")
     if args.data_root is None:
-        raise SystemExit("训练需要 --data-root（PlantVillage 彩色图目录）")
+        raise SystemExit("training needs --data-root (the PlantVillage colour folder)")
     return train(args)
 
 
 def eval_only(args):
-    """加载权重，只在 PlantDoc（或 PV test）上评估，不对模型做任何更新。"""
+    """Load a checkpoint and evaluate it on PlantDoc or on the test split; no updates."""
     device = (torch.device("cuda") if (args.device == "auto" and torch.cuda.is_available())
               else torch.device("cpu" if args.device == "auto" else args.device))
     ckpt = torch.load(args.ckpt, map_location=device, weights_only=False)
-    # 评估时不需要再下载预训练权重：状态字典会整体覆盖
+    # No need to download pretrained weights here; the state dict overwrites them
     model, note = build_model(ckpt.get("model", args.model), len(CLASS_NAMES),
                               pretrained=False, freeze_backbone=False)
     model.load_state_dict(ckpt["state_dict"])
     model.to(device)
-    print(f"[INFO] 已加载 {args.ckpt}（{note}），不做任何训练。")
+    print(f"[INFO] loaded {args.ckpt} ({note}); no training will run.")
     mapping = load_mapping(args.mapping)
     if args.plantdoc_root:
-        # 跨域：PlantDoc 整份数据都只当测试集用
+        # Cross-domain: the whole PlantDoc set is a test set
         items, _stats = build_index(args.plantdoc_root, "plantdoc", mapping,
                                     split_filter=args.plantdoc_split)
         eval_items, split_note = items, f"PlantDoc[{args.plantdoc_split}]"
         tag = "plantdoc"
     else:
-        # 域内：必须用和训练时同一套 split，只取 test 部分。
-        # 否则会把训练图片算进"测试准确率"，数字是虚高的。
+        # In-domain: rebuild the same split as training and take the test part only;
+        # otherwise training images would inflate the reported test accuracy.
         items, _stats = build_index(args.data_root, args.dataset_name, mapping,
                                     args.limit_per_class)
         r = [float(x) for x in args.split.split("/")]
@@ -814,8 +818,8 @@ def eval_only(args):
         split_note = f"PlantVillage test split (split_seed={args.seed})"
         tag = "test"
     if not eval_items:
-        raise SystemExit("评估集为空，请检查路径与类名映射。")
-    print(f"[INFO] 评估集 = {split_note}，共 {len(eval_items)} 张")
+        raise SystemExit("the evaluation set is empty; check the paths and the label mapping.")
+    print(f"[INFO] evaluation set = {split_note}, {len(eval_items)} images")
     ds = ImageListDataset(eval_items, build_transforms(args.image_size, False)[1])
     dl = DataLoader(ds, batch_size=args.batch_size, shuffle=False,
                     num_workers=args.num_workers)
@@ -824,8 +828,8 @@ def eval_only(args):
     print(f"[EVAL] acc={m['acc']:.4f} macro_f1={m['macro_f1']:.4f} n={m['n']}")
     save_metrics(m, args.out_dir, tag)
 
-    # 逐图预测（标签感知文件名：predictions_plantdoc.csv / predictions_test.csv）
-    # 错例分析（Fig. 6）需要它，跨域尤其重要。
+    # Per-image predictions, written as predictions_plantdoc.csv or predictions_test.csv
+    # The error analysis in Fig. 6 needs them, especially cross-domain.
     pred_path = args.out_dir / f"predictions_{tag}.csv"
     args.out_dir.mkdir(parents=True, exist_ok=True)
     with open(pred_path, "w", newline="", encoding="utf-8-sig") as f:

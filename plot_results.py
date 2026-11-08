@@ -3,40 +3,40 @@
 """
 plot_results.py
 ===============
-把 `runs/` 里的训练产物批量画成报告要用的图（不需要 PyTorch，只需要 matplotlib + Pillow）。
+Turn the artefacts in `runs/` into the figures used in the report (matplotlib + Pillow only).
 
-输入（train_baseline.py 的输出）
+Input (produced by train_baseline.py)
 --------------------------------
-    runs/<run_name>/log.csv                    每 epoch 的 loss / acc / macro-F1
-    runs/<run_name>/metrics_test.json          PV 测试集指标（acc / macro_f1 / 混淆矩阵）
-    runs/<run_name>/metrics_plantdoc.json      PlantDoc 跨域指标（E5 才有）
-    runs/<run_name>/confusion_matrix_*.csv     3×3 混淆矩阵
-    runs/<run_name>/predictions_test.csv       逐图预测（用来挑错例）
+    runs/<run_name>/log.csv                    loss / acc / macro-F1 per epoch
+    runs/<run_name>/metrics_test.json          PlantVillage test metrics
+    runs/<run_name>/metrics_plantdoc.json      PlantDoc cross-domain metrics
+    runs/<run_name>/confusion_matrix_*.csv     3 x 3 confusion matrix
+    runs/<run_name>/predictions_test.csv       per-image predictions, used to pick failures
 
-输出（--out-dir，默认 figures/）
+Output (--out-dir, default figures/)
 --------------------------------
-    fig3_curves_<run>.png        训练曲线：loss + 验证 acc / macro-F1
-    fig4_cm_<run>_<tag>.png      混淆矩阵热图（tag = test / plantdoc）
-    fig5_compare.png             各实验 Acc / macro-F1 对比（含 PlantDoc 跨域）
-    fig6_errors_<run>.png        错例拼图（真实标签 → 预测标签）
-    figures/index.md             本次生成了哪些图 + 可直接用的英文图注
+    fig3_curves_<run>.png        training curves: loss and validation scores
+    fig4_cm_<run>_<tag>.png      confusion matrix heat map (tag = test / plantdoc)
+    fig5_compare.png             accuracy and macro-F1 per configuration, both domains
+    fig6_errors_<run>.png        misclassified images (true label to predicted label)
+    figures/index.md             which figures were produced, with ready-to-use captions
 
-用法
+Usage
 ----
-    # 全部自动发现
+    # discover every run
     python plot_results.py --runs runs --out-dir figures
 
-    # 只画某一组
+    # a single run
     python plot_results.py --runs runs --only E1 --out-dir figures
 
-    # 错例图指定用哪次 run（默认取第一个有 predictions_test.csv 的）
+    # which run to use for the error panel (default: the first with predictions_test.csv)
     python plot_results.py --runs runs --errors-run E5_plantdoc_eval
 
-说明
+Notes
 ----
-* 所有图里的数字都直接来自文件，脚本不写死任何数值。
-* 缺文件就跳过并打印提示，不会报错中断。
-* 图里不画平滑曲线、不裁剪 epoch，避免"看起来更好"的误导。
+* Every number in the figures is read from a file; nothing is hard-coded.
+* A missing file is skipped with a message instead of aborting the script.
+* No smoothing and no epoch trimming, so the curves cannot look better than they are.
 """
 
 from __future__ import annotations
@@ -58,7 +58,7 @@ SHORT = {"healthy": "healthy", "early_blight": "early blight", "late_blight": "l
 
 
 # --------------------------------------------------------------------------- #
-# 读文件
+# File readers
 # --------------------------------------------------------------------------- #
 def read_csv_rows(p: Path):
     with open(p, newline="", encoding="utf-8-sig") as f:
@@ -71,11 +71,10 @@ def read_json(p: Path):
 
 
 def find_runs(runs_dir: Path, only: str | None):
-    """只把真正含训练产物的目录当成 run，避免把图片夹/缓存目录也算进去。
+    """Treat only folders that hold training output as runs, not image or cache folders.
 
-    另外按约定跳过"实验性/作废"的目录：名字以 `_` 开头，或含 smoke / ignore /
-    checkpoint 的（例如 `_smoke_test_ignore`），免得冒烟测试的数据混进对比图。
-    """
+    Folders that start with `_`, or that contain smoke / ignore / checkpoint,
+    are skipped so that smoke-test output cannot leak into the comparison figure."""
     runs, skipped = [], []
     for d in sorted(runs_dir.iterdir()):
         if not d.is_dir():
@@ -92,12 +91,12 @@ def find_runs(runs_dir: Path, only: str | None):
             continue
         runs.append(d)
     if skipped:
-        print(f"[INFO] 已跳过 {len(skipped)} 个非正式目录：{', '.join(skipped)}")
+        print(f"[INFO] skipped {len(skipped)} non-official folders: {', '.join(skipped)}")
     return runs
 
 
 # --------------------------------------------------------------------------- #
-# 图 3：训练曲线
+# Figure 3: training curves
 # --------------------------------------------------------------------------- #
 def plot_curves(run_dir: Path, out_dir: Path, run_label: str):
     log = run_dir / "log.csv"
@@ -142,7 +141,7 @@ def plot_curves(run_dir: Path, out_dir: Path, run_label: str):
 
 
 # --------------------------------------------------------------------------- #
-# 图 4：混淆矩阵热图
+# Figure 4: confusion matrix
 # --------------------------------------------------------------------------- #
 def plot_cm(run_dir: Path, out_dir: Path, run_label: str):
     made = []
@@ -181,10 +180,10 @@ def plot_cm(run_dir: Path, out_dir: Path, run_label: str):
 
 
 # --------------------------------------------------------------------------- #
-# 图 5：各实验对比
+# Figure 5: comparison across configurations
 # --------------------------------------------------------------------------- #
 def collect_metrics(runs):
-    """返回 [(label, {test:..., plantdoc:...})]"""
+    """Return [(label, {test: ..., plantdoc: ...})]."""
     out = []
     for d in runs:
         item = {"label": d.name, "test": None, "plantdoc": None}
@@ -200,15 +199,15 @@ def collect_metrics(runs):
 def plot_compare(runs, out_dir: Path):
     data = collect_metrics(runs)
     if len(data) < 2:
-        print("[SKIP] 少于 2 组 metrics，跳过对比图（先跑完 E1 和 E3 再来）")
+        print("[SKIP] fewer than two runs have metrics; the comparison figure needs at least E1 and E3")
         return None
 
     labels = [d["label"] for d in data]
     x = np.arange(len(labels))
     w = 0.36
 
-    # 左右两个子图：左=accuracy，右=macro-F1；每个子图里 PV-test 与 PlantDoc 并排。
-    # 之所以不用"4 个系列一张图"，是因为 4 组柱子会挤在一起、图例也容易压住数字。
+    # Two panels: accuracy on the left, macro-F1 on the right; both domains side by side.
+    # Four series in one panel would crowd the bars and hide the numbers behind the legend.
     fig, axes = plt.subplots(1, 2, figsize=(max(8.0, 1.7 * len(labels)), 4.2), sharey=True)
     panels = [("accuracy", "Accuracy"), ("macro_f1", "Macro-F1")]
     for pi, (ax, (key, title)) in enumerate(zip(axes, panels)):
@@ -228,7 +227,7 @@ def plot_compare(runs, out_dir: Path):
         ax.set_title(title, fontsize=10)
         ax.set_ylim(0, 1.06)
         ax.spines[["top", "right"]].set_visible(False)
-        if pi == 0:      # 图例放在左图下方，避免压住任何柱子
+        if pi == 0:      # legend below the left panel so that no bar is covered
             ax.legend(frameon=False, fontsize=8, loc="upper center",
                       bbox_to_anchor=(0.5, -0.26), ncol=2)
     axes[0].set_ylabel("score")
@@ -244,23 +243,23 @@ def plot_compare(runs, out_dir: Path):
 
 
 # --------------------------------------------------------------------------- #
-# 图 6：错例拼图
+# Figure 6: error panel
 # --------------------------------------------------------------------------- #
 def plot_errors(run_dir: Path, out_dir: Path, run_label: str, n=6, min_prob=0.0,
                 tag: str = "plantdoc"):
-    """错例拼图。默认优先用跨域（PlantDoc）的预测，因为它才是错误分析的重点。"""
+    """Error panel; by default it uses the cross-domain predictions, which matter most."""
     pred = run_dir / f"predictions_{tag}.csv"
     if not pred.exists():
         alt = run_dir / "predictions_test.csv"
         if tag != "test" and alt.exists():
-            print(f"[INFO] {run_label}: 没有 predictions_{tag}.csv，退回用 test 集预测")
+            print(f"[INFO] {run_label}: no predictions_{tag}.csv, falling back to the test split")
             pred, tag = alt, "test"
         else:
             return None
     rows = read_csv_rows(pred)
     wrong = [r for r in rows if str(r.get("correct", "0")) in ("0", "False", "false")]
     if not wrong:
-        print(f"[INFO] {run_label}: {tag} 没有错例（或不含 correct 列），跳过错例图")
+        print(f"[INFO] {run_label}: no errors in {tag}, skipping the error panel")
         return None
 
     def maxp(r):
@@ -291,7 +290,7 @@ def plot_errors(run_dir: Path, out_dir: Path, run_label: str, n=6, min_prob=0.0,
         else:
             ax.text(0.5, 0.5, "image not found\n" + p.name, ha="center", va="center",
                     fontsize=8)
-        # 标签写在图内左上角（不放在标题位置，否则图片宽高比不一致时会和上一行重叠）
+        # Labels sit inside the image, top left; as titles they would collide with the row above
         ax.text(0.03, 0.97,
                 f"true: {SHORT.get(r['true'], r['true'])}\n"
                 f"pred: {SHORT.get(r['pred'], r['pred'])}  (p={maxp(r):.2f})",
@@ -313,7 +312,7 @@ def safe(s: str) -> str:
 
 
 # --------------------------------------------------------------------------- #
-# 图注清单
+# Caption list
 # --------------------------------------------------------------------------- #
 CAPTIONS = {
     "fig3": "Fig. 3 Training curves. Left: training and validation cross-entropy loss per epoch. "
@@ -334,27 +333,27 @@ CAPTIONS = {
 # main
 # --------------------------------------------------------------------------- #
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="把 runs/ 里的结果画成报告用的图")
+    ap = argparse.ArgumentParser(description="Turn the results in runs/ into report figures")
     ap.add_argument("--runs", type=Path, default=Path("runs"))
     ap.add_argument("--out-dir", type=Path, default=Path("figures"))
-    ap.add_argument("--only", default=None, help="只处理名字包含该字符串的 run")
+    ap.add_argument("--only", default=None, help="only process runs whose name contains this")
     ap.add_argument("--errors-run", default=None,
-                    help="错例图用哪个 run（默认第一个有 predictions_test.csv 的）")
+                    help="run used for the error panel (default: first with predictions_test.csv)")
     ap.add_argument("--errors-n", type=int, default=6)
     ap.add_argument("--errors-tag", default="plantdoc", choices=["plantdoc", "test"],
-                    help="错例图用哪一组预测，默认跨域 PlantDoc")
+                    help="which predictions the error panel uses (default: cross-domain PlantDoc)")
     args = ap.parse_args(argv)
 
     if not args.runs.exists():
-        print(f"[ERROR] 找不到 {args.runs}，先跑训练。", file=sys.stderr)
+        print(f"[ERROR] {args.runs} does not exist; run the training first.", file=sys.stderr)
         return 2
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
     runs = find_runs(args.runs, args.only)
     if not runs:
-        print(f"[ERROR] {args.runs} 下没有 run 目录。", file=sys.stderr)
+        print(f"[ERROR] no run folders inside {args.runs}.", file=sys.stderr)
         return 2
-    print(f"[INFO] 发现 {len(runs)} 个 run：" + ", ".join(d.name for d in runs))
+    print(f"[INFO] found {len(runs)} runs: " + ", ".join(d.name for d in runs))
 
     made = []
     for d in runs:
@@ -368,7 +367,7 @@ def main(argv=None):
     if cmp_result:
         made.append(("fig5", cmp_result[0]))
 
-    # 错例图
+    # Error panel
     err_run = None
     if args.errors_run:
         err_run = next((d for d in runs if args.errors_run.lower() in d.name.lower()), None)
@@ -381,15 +380,15 @@ def main(argv=None):
 
     # index.md
     with open(args.out_dir / "index.md", "w", encoding="utf-8") as f:
-        f.write("# 生成的图与图注\n\n")
-        f.write("> 图注可直接粘进报告；`Fig. N` 的编号按你们 Word 里的顺序改。\n\n")
+        f.write("# Generated figures and captions\n\n")
+        f.write("> Captions can be pasted into the report; adjust `Fig. N` to your numbering.\n\n")
         seen = set()
         for key, name in made:
             if key in seen:
                 continue
             seen.add(key)
             f.write(f"## `{name}`\n\n{CAPTIONS[key]}\n\n")
-        f.write("\n---\n\n## 本次读到的数值（核对用）\n\n")
+        f.write("\n---\n\n## Values read from the runs (for checking)\n\n")
         for item in collect_metrics(runs):
             t = item["test"] or {}
             p = item["plantdoc"] or {}
@@ -404,8 +403,8 @@ def main(argv=None):
                     line += f"; Δacc={acc_t - acc_p:+.4f}"
             f.write(line + "\n")
     print(f"[OK] {args.out_dir / 'index.md'}")
-    print(f"\n共生成 {len(made)} 个图文件。下一步：打开 figures/index.md 拿图注，"
-          f"把数字抄进报告的 Table 9。")
+    print(f"\nWrote {len(made)} figure files. Next: open figures/index.md for the captions "
+          f"and copy the numbers into Table 5 of the report.")
     return 0
 
 

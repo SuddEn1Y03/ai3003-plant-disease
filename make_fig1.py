@@ -3,15 +3,15 @@
 """
 make_fig1.py
 ============
-生成报告 Figure 1：2 行 × 3 列的样本对比图
+Build Figure 1 of the report: a 2 x 3 sample comparison panel.
 
-    行 = 数据集（PlantVillage / PlantDoc），列 = 三类（healthy / early blight / late blight）
-    每个小格下方标 (a)…(f)，左侧写数据集名与说明
+    Rows are datasets (PlantVillage, PlantDoc); columns are the three classes.
+    Every cell is labelled (a)-(f); the dataset name sits on the left.
 
-只用 Pillow，不需要 matplotlib。图片全部来自 data/ 下的真实数据，每个单元格随机抽 1 张
-（固定随机种子，重跑结果一致）。
+Pillow only, no matplotlib. Images come from data/, one random sample per cell,
+with a fixed seed so re-runs match.
 
-用法：
+Usage:
     python make_fig1.py --out figures/fig1_samples.png --seed 0
 """
 
@@ -28,10 +28,10 @@ from data_stats import (DEFAULT_MAP, UNIFIED_LABELS, build_lookup,
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-CELL = 260          # 单元格边长（像素）
-PAD = 18            # 单元格内边距
-LABEL_H = 26        # 小格下方 "(a) Healthy" 的高度
-ROW_LABEL_W = 150   # 左侧行标签宽度
+CELL = 260          # cell size in pixels
+PAD = 18            # padding inside a cell
+LABEL_H = 26        # height of the "(a) Healthy" label
+ROW_LABEL_W = 150   # width of the left-hand row label
 MARGIN = 24
 
 
@@ -101,7 +101,7 @@ def main():
     titles = {"healthy": "Healthy", "early_blight": "Early blight", "late_blight": "Late blight"}
     letters = "abcdef"
 
-    # 列标题
+    # Column headers
     for c, lab in enumerate(UNIFIED_LABELS):
         x = MARGIN + ROW_LABEL_W + c * cell + cell // 2
         tw = draw.textlength(titles[lab], font=f_head)
@@ -109,13 +109,13 @@ def main():
 
     for r, (ds, note, picked) in enumerate(sets):
         y0 = MARGIN + 40 + r * (cell + LABEL_H)
-        # 左侧行标签
+        # Row labels
         draw.text((MARGIN, y0 + cell // 2 - 22), ds, fill="black", font=f_row)
         draw.multiline_text((MARGIN, y0 + cell // 2 + 2), note, fill="#444444",
                             font=f_row_small, spacing=2)
         for c, lab in enumerate(UNIFIED_LABELS):
             x0 = MARGIN + ROW_LABEL_W + c * cell
-            # 外框
+            # Cell border
             draw.rectangle([x0 + 4, y0 + 4, x0 + cell - 4, y0 + cell - 4],
                            outline="#CCCCCC", width=1)
             paths = picked.get(lab) or []
@@ -125,11 +125,11 @@ def main():
                         thumb = fit_square(im, CELL)
                     canvas.paste(thumb, (x0 + PAD, y0 + PAD))
                 except Exception as e:  # noqa: BLE001
-                    print(f"[WARN] 打不开 {paths[0]}: {e}")
+                    print(f"[WARN] cannot open {paths[0]}: {e}")
             else:
                 draw.text((x0 + PAD + 6, y0 + CELL // 2), "(no image)",
                           fill="#999999", font=f_cell)
-            # 小格标注 (a) Healthy
+            # Cell label, e.g. "(a) Healthy"
             idx = r * cols + c
             sub = f"({letters[idx]}) {titles[lab]}"
             tw = draw.textlength(sub, font=f_cell)

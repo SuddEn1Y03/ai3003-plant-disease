@@ -7,7 +7,7 @@ venv/
 env/
 .ipynb_checkpoints/
 
-# ---- 数据（体积大，且版权归原作者，不放进仓库）----
+# ---- Data: large, and the copyright stays with the original authors ----
 data/
 dataset/
 datasets/
@@ -16,19 +16,19 @@ PlantDoc-Dataset/
 *.zip
 *.tar.gz
 
-# ---- 训练产物 ----
+# ---- Training artefacts ----
 runs/**/best.pt
 runs/**/last.pt
 *.pt
 *.pth
 *.onnx
 *.ckpt
-# 保留每个 run 的 log.csv / metrics_*.json / args.json（复现证据），只忽略权重
+# Keep log.csv, metrics_*.json and args.json for every run; ignore only the weights
 !runs/**/log.csv
 !runs/**/metrics_*.json
 !runs/**/args.json
 
-# ---- 编辑器和系统 ----
+# ---- Editors and operating system ----
 .vscode/
 .idea/
 *.swp
@@ -36,7 +36,7 @@ runs/**/last.pt
 Thumbs.db
 desktop.ini
 
-# ---- 本地临时文件 ----
+# ---- Local temporary files ----
 *.log
 !runs/**/train.log
 tmp/

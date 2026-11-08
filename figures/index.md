@@ -1,6 +1,6 @@
-# 生成的图与图注
+# Generated figures and captions
 
-> 图注可直接粘进报告；`Fig. N` 的编号按你们 Word 里的顺序改。
+> Captions can be pasted into the report; adjust `Fig. N` to your numbering.
 
 ## `fig3_curves_E1_basiccnn.png`
 
@@ -21,7 +21,7 @@ Fig. 6 Misclassified test images. Each panel shows the ground-truth label, the p
 
 ---
 
-## 本次读到的数值（核对用）
+## Values read from the runs (for checking)
 
 - **E1_basiccnn**: PV-test acc=0.954074, macro-F1=0.949836; PlantDoc acc=0.458015, macro-F1=0.340919; Δacc=+0.4961
 - **E2_resnet18_scratch**: PV-test acc=0.982222, macro-F1=0.98052; PlantDoc acc=0.473282, macro-F1=0.342868; Δacc=+0.5089
