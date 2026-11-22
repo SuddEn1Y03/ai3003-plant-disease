@@ -48,11 +48,13 @@ training or model selection).
 | `make_figures.py` | Class-distribution chart and per-dataset sample grids |
 | `train_baseline.py` | Trains BasicCNN / ResNet18, early stopping, in-domain and cross-domain evaluation |
 | `plot_results.py` | Turns `runs/` into training curves, confusion matrices, comparison and error figures |
+| `app.py` | Gradio demo: upload one leaf photo, get the three-class prediction |
+| `examples/` | Four PlantDoc photos used as clickable samples in the demo |
 | `runs/` | Per-epoch logs, metrics JSON, confusion matrices and per-image predictions for E1–E4 |
 | `figures/` | Figures used in the report |
 | `docs/dataset_sources.md` | Dataset sources, versions and what was excluded |
 | `docs/results.md` | Full result tables, confidence intervals, training cost and reproduction commands |
-| `RUNBOOK.md` | Step-by-step operating guide (in Chinese): environment, data, experiments, figures |
+| `RUNBOOK.md` | Step-by-step operating guide: environment, data, experiments, figures, demo |
 
 ---
 
@@ -96,6 +98,16 @@ python train_baseline.py --model resnet18 --pretrained --eval-only \
 
 Model weights (`*.pt`) and the datasets are excluded by `.gitignore`; re-running the training
 commands regenerates them.
+
+### Demo
+
+```bash
+python app.py          # then open http://127.0.0.1:7860
+```
+
+`app.py` loads `runs/E3_resnet18_pre/best.pt`, applies the same preprocessing as the evaluation
+script, and returns the three class probabilities. Train E3 first if the checkpoint is missing.
+
 
 ---
 

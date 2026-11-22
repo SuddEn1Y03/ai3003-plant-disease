@@ -1,4 +1,4 @@
-# Runbook: from zero to the submitted report
+﻿# Runbook: from zero to the submitted report
 
 Operating notes for reproducing every number in the report. Written for Windows
 (Anaconda Prompt); the commands also work in bash with the obvious path changes.
@@ -109,3 +109,19 @@ This writes the training curves, confusion matrices, the comparison chart, the e
 | `cannot identify image file` | corrupt image in the dataset | the loader skips it; delete the file if it appears often |
 | matplotlib exits with `-1066598273` | environment not activated | `conda activate myenv` first |
 | `BrokenPipeError` in the first batch | multiprocessing on Windows | keep `--num-workers 0` (the default) |
+## 7. Demo app
+
+```bat
+python app.py
+```
+
+Opens `http://127.0.0.1:7860`. It loads `runs/E3_resnet18_pre/best.pt` on the GPU when one is
+available and returns the three class probabilities for one uploaded photo. The four thumbnails
+under the upload box are PlantDoc photos that were never used for training.
+
+Two environment notes, both already pinned in `requirements.txt`:
+
+- `gradio==4.44.1` needs `huggingface_hub<1.0`, because it imports `HfFolder`, which 1.x removed.
+- `gradio_client 1.3.0` crashes on JSON schemas produced by `pydantic>=2.11`, hence `pydantic==2.9.2`.
+
+Close the window or press `Ctrl+C` to stop the server.
